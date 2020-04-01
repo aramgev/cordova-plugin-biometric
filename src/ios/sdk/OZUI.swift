@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class InfoLabel: UILabel {
     var textInsets = UIEdgeInsets.zero {

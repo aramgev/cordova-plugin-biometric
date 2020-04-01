@@ -149,13 +149,14 @@ public enum OZAnalysesState: String {
 }
 
 /** Делегат, возвращающий результаты и состояния liveness-проверки. */
-public protocol OZVerificationDelegate: class {
+@objc public protocol OZVerificationDelegate: NSObjectProtocol {
     /** Метод, возвращающий результаты liveness-проверки. */
-    func onOZVerificationResult(results: [OZVerificationResult])
+    @objc func onOZVerificationResult(results: [OZVerificationResult])
+//    @objc func onOZVerificationUserCancelled()
 }
 
 /** Структура, содержащая результат liveness-проверки. */
-public struct OZVerificationResult {
+public class OZVerificationResult: NSObject {
     /** Статус liveness-проверки. */
     public var status      : OZVerificationStatus
     /** Тип движения liveness-проверки. */
@@ -164,10 +165,24 @@ public struct OZVerificationResult {
     public var videoURL    : URL?
     /** Временная метка окончания проверки. */
     public var timestamp   : Date
+    
+    init(status: OZVerificationStatus,
+         movement: OZVerificationMovement,
+         videoURL: URL?,
+         timestamp: Date) {
+        
+        self.status = status
+        self.movement = movement
+        self.videoURL = videoURL
+        self.timestamp = timestamp
+        
+        super.init()
+    }
 }
 
 /** Статус liveness-проверки. */
-public enum OZVerificationStatus {
+@objc(OZVerificationStatus)
+public enum OZVerificationStatus: UInt {
     /** Успешное прохождение liveness-проверки. */
     case userProcessedSuccessfully
     /** Liveness-проверка не была обработана. */
@@ -200,7 +215,8 @@ public struct OZAttemptSettings {
 }
 
 /** Движения для liveness-проверки. */
-public enum OZVerificationMovement {
+@objc(OZVerificationMovement)
+public enum OZVerificationMovement: UInt {
     
     // MARK: - actions
     
@@ -239,6 +255,6 @@ public enum AnalyseResolutionStatus: String {
     case operatorRequired   = "OPERATOR_REQUIRED"
 }
 
-public enum OZLocalizationCode {
-    case ru, en
+public enum OZLocalizationCode: String {
+    case ru, en, hy
 }

@@ -28,7 +28,7 @@ struct ConnectionConfigs {
         get { return OZSDK.host }
     }
     
-    fileprivate static var headers : HTTPHeaders {
+    static var headers : HTTPHeaders {
         get {
             var headers = [
                 "Content-Type" : "application/x-www-form-urlencoded"
@@ -77,10 +77,14 @@ struct OZRequestManager {
                                  encoding: JSONEncoding.default,
                                  headers: ConnectionConfigs.headers).responseJSON { response in
                                     if let data = response.data, let dict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                                        completion(dict["access_token"] as? String, response.error)
+                                        #if swift(>=5.0)
+                                        completion(dict["access_token"] as? String, response.result.error)
+                                        #else
+                                        completion(dict?["access_token"] as? String, response.result.error)
+                                        #endif
                                     }
                                     else {
-                                        completion(nil, response.error)
+                                        completion(nil, response.result.error)
                                     }
         }
     }
@@ -174,15 +178,21 @@ struct OZRequestManager {
                         upload.responseJSON { response in
                             if let data = response.data {
                                 if let dict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                                    completion(dict["folder_id"] as? String, response.error)
+                                    #if swift(>=5.0)
+                                    completion(dict["folder_id"] as? String, response.result.error)
+                                    #else
+                                    completion(dict?["folder_id"] as? String, response.result.error)
+                                    #endif
                                     return
                                 }
-                                else if let folderId = folderId, let array = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]], array.count > 0 {
-                                    completion(folderId, response.error)
+                                else if let folderId = folderId,
+                                    let array = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]],
+                                    (array ?? []).count > 0 {
+                                    completion(folderId, response.result.error)
                                     return
                                 }
                             }
-                            completion(nil, response.error)
+                            completion(nil, response.result.error)
                         }
                     case .failure(let encodingError):
                         completion(nil, encodingError)
@@ -210,15 +220,15 @@ struct OZRequestManager {
                                                 self.waitAnalysesStatus(analyseID: analyseID, completion: completion)
                                             }
                                             else {
-                                                completion(resolutionStatus, response.error)
+                                                completion(resolutionStatus, response.result.error)
                                             }
                                         }
                                         else {
-                                            completion(nil, response.error)
+                                            completion(nil, response.result.error)
                                         }
                                     }
                                     else {
-                                        completion(nil, response.error)
+                                        completion(nil, response.result.error)
                                     }
         }
     }
@@ -233,21 +243,21 @@ struct OZRequestManager {
                                         if  let resolution = answer["resolution"] as? String,
                                             let resolutionStatus = AnalyseResolutionStatus(rawValue: resolution) {
                                             if resolutionStatus == .processing || resolutionStatus == .initial {
-                                                completion(resolutionStatus, response.error)
+                                                completion(resolutionStatus, response.result.error)
                                                 DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                                                     self.waitAnalysesStatus(analyseID: analyseID, completion: completion)
                                                 })
                                             }
                                             else {
-                                                completion(resolutionStatus, response.error)
+                                                completion(resolutionStatus, response.result.error)
                                             }
                                         }
                                         else {
-                                            completion(nil, response.error)
+                                            completion(nil, response.result.error)
                                         }
                                     }
                                     else {
-                                        completion(nil, response.error)
+                                        completion(nil, response.result.error)
                                     }
         }
     }
@@ -255,9 +265,17 @@ struct OZRequestManager {
     private static func parse(data: Data) -> [String: Any]? {
         if let dict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
             return dict
-        }
-        else if let array = try? JSONSerialization.jsonObject(with: data, options: []) as? [Any], let dict = array.last as? [String: Any]  {
-            return dict
+        } else {
+            let array = try? JSONSerialization.jsonObject(with: data, options: []) as? [Any]
+            #if swift(>=5.0)
+            if let dict = array?.last as? [String: Any]  {
+                return dict
+            }
+            #else
+            if let array = array, let dict = array?.last as? [String: Any]  {
+                return dict
+            }
+            #endif
         }
         return nil
     }
@@ -270,7 +288,7 @@ extension DataResponse {
 }
 
 public extension Error {
-    public var ozErrorMessage: String {
+    var ozErrorMessage: String {
         get {
             return (self as? ResponseError)?.localizedDescription ?? self.localizedDescription
         }

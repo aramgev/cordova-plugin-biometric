@@ -60,7 +60,7 @@ struct SDK: OZSDKProtocol {
     }
     
     func createTestVerificationVC() -> UIViewController {
-        return OZTestLivenessViewController()
+        return UIViewController() //OZTestLivenessViewController()
     }
     
     /** Авторизация по логину и паролю. */

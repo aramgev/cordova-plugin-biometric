@@ -7,20 +7,10 @@
 
 import Foundation
 
-extension OZLocalizationCode {
-    var string: String {
-        switch self {
-        case .ru:
-            return "ru"
-        case .en:
-            return "en"
-        }
-    }
-}
-
 class OZResources {
+    
     static var localizationCode: String? {
-        return OZSDK.localizationCode?.string
+        return (OZSDK.localizationCode ?? .en).rawValue
     }
     
     private init() { }
@@ -44,6 +34,4 @@ class OZResources {
         
         return NSLocalizedString(key, tableName: "Localizable", bundle: bundle, comment: "")
     }
-    
 }
-

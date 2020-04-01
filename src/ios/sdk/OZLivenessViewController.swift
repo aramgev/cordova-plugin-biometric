@@ -10,7 +10,6 @@ import Foundation
 import AVFoundation
 import UIKit
 import FirebaseMLVision
-import DeviceKit
 
 private enum ActionStatus {
     case start, preparing, run, waiting, final, cancel
@@ -249,7 +248,6 @@ class OZLivenessViewController: OZFrameViewController {
         case .smile, .eyes, .down, .up, .left, .right, .scanning:
             self.frameView?.frameSize = nFaceFrame
         }
-//        self.frameView?.changeOpacity(showFace: true)
         self.frameView?.alpha = 1
         self.view.layoutSubviews()
     }
@@ -358,7 +356,7 @@ class OZLivenessViewController: OZFrameViewController {
     override func process(faces: [VisionFace], completion: @escaping (() -> Void)) {
         if faces.count > 1 {
             if !actionState.isSuccess {
-                self.fullRestartAction { [weak self] in
+                self.fullRestartAction {
                     completion()
                 }
             }
@@ -376,7 +374,7 @@ class OZLivenessViewController: OZFrameViewController {
         guard faceoutCount < 5 else {
             if actionState.status == .start || actionState.status == .run || actionState.status == .preparing {
                 if !actionState.isSuccess {
-                    self.fullRestartAction { [weak self] in
+                    self.fullRestartAction {
                         completion()
                     }
                     return
@@ -497,7 +495,7 @@ class OZLivenessViewController: OZFrameViewController {
         var nonnonOpenEyes  = true
         var straight        = true
         var withoutIncline  = true
-        var cuttedFace = !self.isFullFaceInFrame(face: face)
+        let cuttedFace = !self.isFullFaceInFrame(face: face)
         
         condition = condition && !cuttedFace
         
@@ -824,7 +822,6 @@ class OZLivenessViewController: OZFrameViewController {
     
     @objc func startAction(sender: UIButton?) {
         self.actionState.isSuccess = false
-//        self.frameView?.changeOpacity(showFace: false)
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             sender?.isHidden = true
@@ -859,6 +856,7 @@ class OZLivenessViewController: OZFrameViewController {
         }
     }
     
+
     @objc override func closeAction(sender: UIButton?) {
         // TODO: переписать
         if sender != nil {
@@ -868,7 +866,6 @@ class OZLivenessViewController: OZFrameViewController {
                                               timestamp: Date())
             self.videos.append(result)
         }
-        
         self.closeAction(withDelegate: sender != nil)
     }
     
@@ -909,6 +906,7 @@ class OZLivenessViewController: OZFrameViewController {
             }
         }
     }
+
 }
 
 // MARK: - Capture
@@ -916,7 +914,7 @@ class OZLivenessViewController: OZFrameViewController {
 extension OZLivenessViewController {
     
     override func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        guard CMSampleBufferDataIsReady(sampleBuffer), let currentAction = currentAction else { return }
+        guard CMSampleBufferDataIsReady(sampleBuffer), let _ = currentAction else { return }
         if self.actionState.status == .run || self.actionState.status == .waiting {
             if self.actionState.isRecording && assetWriter?.status == .writing && sourceTime == nil {
                 sourceTime = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
@@ -940,10 +938,14 @@ extension OZLivenessViewController {
             return
         }
         
+        var videoCodecType: Any = AVVideoCodecH264
+        if #available(iOS 11.0, *) {
+           videoCodecType = AVVideoCodecType.h264
+        }
         let assetWriterInput = AVAssetWriterInput(
             mediaType: .video,
             outputSettings: [
-                AVVideoCodecKey:    AVVideoCodecType.h264,
+                AVVideoCodecKey:    videoCodecType,
                 AVVideoWidthKey:    self.captureImageSize.width,
                 AVVideoHeightKey:   self.captureImageSize.height,
                 AVVideoCompressionPropertiesKey: [
@@ -999,7 +1001,7 @@ extension OZLivenessViewController {
         }
         var timeoffset: Double = 0
         let actionIsSuccess = actionState.isSuccess
-        if let videoL = self.actionState.startRecordingTimestamp?.timeIntervalSinceNow as? Double,
+        if let videoL = self.actionState.startRecordingTimestamp?.timeIntervalSinceNow,
             -videoL < self.minVideoLength,
             self.actionState.status == .waiting {
             timeoffset += self.minVideoLength + videoL
@@ -1026,3 +1028,4 @@ extension OZLivenessViewController {
         }
     }
 }
+
