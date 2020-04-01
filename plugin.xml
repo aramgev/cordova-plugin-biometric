@@ -22,7 +22,7 @@
          <string>App uses camera.</string>
        </config-file>
 
-       <!-- <hook type="before_plugin_install" src="src/scripts/prepareCocoaPods.js" /> -->
+      <hook type="before_plugin_install" src="src/scripts/prepareCocoaPods.js" /> 
 
       <!-- iOS platform source and resource files -->
       <source-file src="src/ios/src/BiometricAuthentication.swift"/>
