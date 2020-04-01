@@ -1,0 +1,12 @@
+platform :ios, '11.0'
+
+target 'OZLiveness' do
+  use_frameworks!
+  inhibit_all_warnings!
+  pod 'Firebase/Core'
+  pod 'Firebase/MLVision', '5.2.0'
+  pod 'Firebase/MLVisionFaceModel', '5.2.0'
+  pod 'Crashlytics'
+  pod 'Alamofire'
+  pod 'OZLivenessSDK'
+end

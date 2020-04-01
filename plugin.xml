@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-biometric-authentication" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<name>BiometricAuth</name>
+<js-module name="BiometricAuth" src="www/BiometricAuth.js"><clobbers target="cordova.plugins.BiometricAuth" />
+</js-module>
+<platform name="android">
+	<config-file parent="/*" target="res/xml/config.xml">
+		<feature name="BiometricAuth"><param name="android-package" value="cordova.plugin.biometricauth.BiometricAuth" />
+		</feature>
+	</config-file>
+	
+	<config-file parent="/*" target="AndroidManifest.xml"></config-file>
+	<source-file src="src/android/BiometricAuth.java" target-dir="src/cordova-plugin-biometric-authentication/BiometricAuth" />
+	<framework custom="true"  src="src/android/biometric.gradle" type="gradleReference" />
+	
+	 <source-file  src="src/android/gradle.properties" target-dir="../../" />
+	 
+	 <preference name="API_URL" />
+	 <preference name="USERNAME" />
+	 <preference name="PASSWORD" />
+	
+	
+	<resource-file src="src/android/libs/oz-liveness-sdk-2.0.2-release.aar" target="libs/oz-liveness-sdk-2.0.2-release.aar"/>
+		
+	<source-file src="src/android/res/values/bcolors.xml" target-dir="res/values"/>
+	<source-file src="src/android/res/values/bstrings.xml" target-dir="res/values"/>
+	<source-file src="src/android/res/values/bstyles.xml" target-dir="res/values"/>	
+	<source-file src="src/android/res/values-hy/bstrings.xml" target-dir="res/values-hy"/>
+	
+	<config-file target="res/values/bstrings.xml" parent="/*">
+		<string name="api_url">$API_URL</string>
+		<string name="username">$USERNAME</string>
+		<string name="password">$PASSWORD</string>
+	</config-file>	
+</platform>
+
+
+ <platform name="ios">
+
+	<config-file target="config.xml" parent="/*">
+
+		<feature name="BiometricAuth">
+			<param name="ios-package" value="BiometricAuth" />
+		</feature>
+
+	</config-file>
+
+	<podspec>
+      <pods use-frameworks="true">
+        <pod name="OZLivenessSDK"  git="https://gitlab+deploy-token-85863:aodj2TBktij3RpmYxSW5@gitlab.com/oz-forensics/liveness_sdk.git" branch="swift4.2"/>
+		<pod name="OZLivenessSDK"  git="git@gitlab.com:oz-forensics/liveness_sdk.git" branch="swift4.2"/>
+      </pods>
+    </podspec>
+
+	
+	<!--
+	
+		<dependency id="cordova-plugin-cocoapod-support"/>
+	
+	<pods-config  use-frameworks="true"/>
+	
+	<pod id="SwiftMessages"/>
+	<pod id="OZLivenessSDK"  git="git@gitlab.com:oz-forensics/liveness_sdk.git" branch="swift4.2"/>
+	<pod id="OZLivenessSDK"  git="git@gitlab.com:oz-forensics/liveness_sdk.git" branch="develop"/>
+	<pod id="OZLivenessSDK"  git="https://gitlab+deploy-token-85863:aodj2TBktij3RpmYxSW5@gitlab.com/oz-forensics/liveness_sdk.git" branch="develop"/>
+	
+	<pod name="OZLivenessSDK"  git="https://gitlab+deploy-token-85863:aodj2TBktij3RpmYxSW5@gitlab.com/oz-forensics/liveness_sdk.git" branch="swift4.2"/>
+	<pod id="OZLivenessSDK"  git="https://gitlab+deploy-token-85863:aodj2TBktij3RpmYxSW5@gitlab.com/oz-forensics/liveness_sdk.git" branch="swift4.2"/>
+	
+	
+	-->
+	<!-- Add in the plugin .swift files here -->
+	<source-file src="src/ios/BiometricAuth.swift" />
+	
+</platform>
+
+</plugin>
