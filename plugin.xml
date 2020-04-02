@@ -53,7 +53,7 @@
 		<framework src="Firebase/MLVision" type="podspec" spec="5.2.0"/>
 		<framework src="Firebase/MLVisionFaceModel" type="podspec" spec="5.2.0"/>
 		
-		
+		<!--
       <podspec>
          <config>
            <source url="https://github.com/CocoaPods/Specs.git"/>
@@ -67,7 +67,8 @@
            <pod name="Firebase/MLVisionFaceModel" spec="0.19.0" />
            <pod name="SVProgressHUD" spec="2.2.5" />
          </pods>
-       </podspec> 
+       </podspec> -->
+	   
    </platform>
 
    <!-- Android platform  conifigurations -->
