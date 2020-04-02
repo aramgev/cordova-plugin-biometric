@@ -44,6 +44,13 @@
       <!-- iOS platform frameworks -->
       <!-- <framework src="Alamofire" type="podspec" spec="4.9.0" /> -->
 
+		<framework src="Alamofire" type="podspec" spec="4.9.0" /> 
+		<framework src="DeviceKit" type="podspec" spec="2.1.0"/>
+		<framework src="Firebase/Core" type="podspec" />
+		<framework src="Firebase/MLVision" type="podspec" spec="5.2.0"/>
+		<framework src="Firebase/MLVisionFaceModel" type="podspec" spec="5.2.0"/>
+		<framework src="SVProgressHUD" type="podspec" />
+		
       <podspec>
          <config>
            <source url="https://github.com/CocoaPods/Specs.git"/>
