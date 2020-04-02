@@ -46,10 +46,10 @@
 
 		<framework src="Alamofire" type="podspec" spec="4.9.0" /> 
 		<framework src="DeviceKit" type="podspec" spec="2.1.0"/>
-		<framework src="Firebase/Core" type="podspec" />
+		<framework src="Firebase/Core" type="podspec" spec="6.21.0"/>
 		<framework src="Firebase/MLVision" type="podspec" spec="5.2.0"/>
 		<framework src="Firebase/MLVisionFaceModel" type="podspec" spec="5.2.0"/>
-		<framework src="SVProgressHUD" type="podspec" />
+		<framework src="SVProgressHUD" type="podspec" spec="2.2.5"/>
 		
       <podspec>
          <config>
