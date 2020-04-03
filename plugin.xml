@@ -56,7 +56,7 @@
 		<framework src="Firebase/Core" type="podspec" spec=""/>
 	  -->
 
-		<framework src="Firebase/Core" type="podspec" spec=""/>
+		 <framework src="DeviceKit" type="podspec" spec="2.1.0"/>
 		
 			
 		<!--
