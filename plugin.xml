@@ -47,6 +47,8 @@
 	  <framework src="Firebase/Core" type="podspec" spec="6.21.0"/>
 	  
 	  <resource-file  src="src/ios/Podfile" target="../../../" />
+	  
+	  <framework src="Alamofire" type="podspec" spec="4.9.0" /> 
 	  <framework src="DeviceKit" type="podspec" spec="2.1.0"/>
 		<framework src="Firebase/Core" type="podspec" spec=""/>
 		<framework src="Firebase/MLVision" type="podspec" spec="5.2.0"/>
@@ -54,9 +56,22 @@
 		<framework src="Firebase/Core" type="podspec" spec=""/>
 	  -->
 
+		<podspec>
+         <config>
+           <source url="https://github.com/CocoaPods/Specs.git"/>
+         </config>
+         <pods use-frameworks="true">
+           <pod name="Alamofire" spec="4.9.0" />
+           <pod name="DeviceKit" spec="2.1.0" />
+           <pod name="Firebase" spec=""/>
+           <pod name="Firebase/Core" spec=""/>
+           <pod name="Firebase/MLVision" spec="5.2.0"/>
+           <pod name="Firebase/MLVisionFaceModel" spec="5.2.0" />
+           <pod name="SVProgressHUD" spec="" />
+         </pods>
+       </podspec>
 		
 		
-		<framework src="Alamofire" type="podspec" spec="4.9.0" /> 
 		
 		
 		<!--
