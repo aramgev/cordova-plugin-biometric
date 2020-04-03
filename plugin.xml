@@ -45,9 +45,11 @@
       <!-- <framework src="Alamofire" type="podspec" spec="4.9.0" /> 
 	  <framework src="SVProgressHUD" type="podspec" spec="2.2.5"/>
 	  <framework src="Firebase/Core" type="podspec" spec="6.21.0"/>
+	  
+	  <resource-file  src="src/ios/Podfile" target="../../../" />
 	  -->
 
-		<resource-file  src="src/ios/Podfile" target="../../../" />
+		
 		
 		<framework src="Alamofire" type="podspec" spec="4.9.0" /> 
 		<framework src="DeviceKit" type="podspec" spec="2.1.0"/>
