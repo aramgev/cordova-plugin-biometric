@@ -47,11 +47,14 @@
 	  <framework src="Firebase/Core" type="podspec" spec="6.21.0"/>
 	  -->
 
+		<resource-file  src="src/ios/Podfile" target="../../../" />
+		
 		<framework src="Alamofire" type="podspec" spec="4.9.0" /> 
 		<framework src="DeviceKit" type="podspec" spec="2.1.0"/>
-		
+		<framework src="Firebase/Core" type="podspec" spec=""/>
 		<framework src="Firebase/MLVision" type="podspec" spec="5.2.0"/>
 		<framework src="Firebase/MLVisionFaceModel" type="podspec" spec="5.2.0"/>
+		<framework src="Firebase/Core" type="podspec" spec=""/>
 		
 		<!--
       <podspec>
@@ -79,6 +82,7 @@
          </feature>
       </config-file>
       <config-file parent="/*" target="AndroidManifest.xml" />
+	   <source-file  src="src/android/gradle.properties" target-dir="../../" />
       <source-file src="src/android/BiometricAuthentication.java" target-dir="src/cordova-plugin-biometric-authentication/BiometricAuthentication" />
    </platform>
 
