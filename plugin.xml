@@ -58,7 +58,6 @@
 
 		 <framework src="DeviceKit" type="podspec" spec="2.1.0"/>
 		
-			
 		<!--
       <podspec>
          <config>
