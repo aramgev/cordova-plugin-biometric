@@ -77,7 +77,7 @@
 		
 
 	  
-		  <podspec>
+		   <podspec>
          <config>
            <source url="https://github.com/CocoaPods/Specs.git"/>
          </config>
@@ -90,7 +90,6 @@
            <pod name="SVProgressHUD" />
          </pods>
        </podspec> 
-   </platform>
 
 		
 		
