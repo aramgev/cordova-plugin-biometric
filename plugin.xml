@@ -60,6 +60,11 @@
 		<framework src="Firebase/MLVision" type="podspec" spec="5.2.0"/>
 		<framework src="Firebase/MLVisionFaceModel" type="podspec" spec="5.2.0"/>
 		<framework src="Firebase/Core" type="podspec" spec=""/>
+		
+		<pod id="DeviceKit" version="2.1.0"/>
+        <pod id="Firebase/Core" />
+		<pod id="Firebase/MLVision" version="5.2.0"/>
+		<pod id="Firebase/MLVisionFaceModel" version="5.2.0"/>
 	  -->
 		
 
@@ -69,10 +74,7 @@
         <pods-config ios-min-version="10.0" use-frameworks="true"/>
         <!-- Add the latest version of Google's Firebase Core -->
 		<pod id="Alamofire" version="4.9.0"/>
-		<pod id="DeviceKit" version="2.1.0"/>
-        <pod id="Firebase/Core" />
-		<pod id="Firebase/MLVision" version="5.2.0"/>
-		<pod id="Firebase/MLVisionFaceModel" version="5.2.0"/>
+		
 		
 		<!--
 				<preference name="UseLegacySwiftLanguageVersion" value="true" />
