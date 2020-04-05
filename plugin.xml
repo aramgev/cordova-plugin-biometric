@@ -62,9 +62,7 @@
 		<framework src="Firebase/Core" type="podspec" spec=""/>
 	  -->
 		
-		<preference name="UseLegacySwiftLanguageVersion" value="true" />
-      <preference name="UseSwiftLanguageVersion" value="4" />
-      <preference name="swift-version" value="4.2" />
+
 	  <dependency id="cordova-plugin-add-swift-support"  />
 		 
 		  <!-- optionally set minimum ios version and enable use_frameworks! -->
@@ -77,6 +75,10 @@
 		<pod id="Firebase/MLVisionFaceModel" version="5.2.0"/>
 		
 		<!--
+				<preference name="UseLegacySwiftLanguageVersion" value="true" />
+      <preference name="UseSwiftLanguageVersion" value="4" />
+      <preference name="swift-version" value="4.2" />
+	  
       <podspec>
          <config>
            <source url="https://github.com/CocoaPods/Specs.git"/>
