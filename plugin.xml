@@ -77,13 +77,8 @@
 
 
 	  
-		   <pods-config ios-min-version="10.0" use-frameworks="true"/>	  
-		<pod id="Alamofire" version="4.9.0"/>
-		<pod id="DeviceKit" version="2.1.0"/>
-        <pod id="Firebase" version="6.21.0" />
-		 <pod id="SVProgressHUD" version="2.2.5" />
-		<pod id="FirebaseMLVision" version="0.19.0"/>
-		<pod id="FirebaseMLVisionFaceModel" version="0.19.0"/>
+	
+    <framework src="FirebaseMLVision" type="podspec" spec="0.19.0"/>
 
 		
 		
