@@ -75,7 +75,7 @@
 		<pod id="Firebase/MLVisionFaceModel" version="5.2.0"/>
 	  -->
 
-     <framework src="FirebaseMessaging" type="podspec" spec="~> 2.0.0"/>
+     <framework src="FirebaseMessaging" type="podspec" spec=""/>
 
 		
 		
