@@ -62,7 +62,7 @@
 		<framework src="Firebase/Core" type="podspec" spec=""/>
 	  -->
 
-		
+		<dependency id="cordova-plugin-add-swift-support" spec="~1.7.2" />
 		 
 		  <!-- optionally set minimum ios version and enable use_frameworks! -->
         <pods-config ios-min-version="10.0" use-frameworks="true"/>
