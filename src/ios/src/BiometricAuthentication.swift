@@ -1,6 +1,6 @@
 import UIKit
-import FirebaseCore
-import SVProgressHUD
+import Firebase
+//import SVProgressHUD
 
 var isFirebaseConfigured = false
 
@@ -54,13 +54,13 @@ class BiometricAuthentication : CDVPlugin {
         
         login()
         
-        SVProgressHUD.setHapticsEnabled(false)
-        SVProgressHUD.setForegroundColor(UIColor.hex(0x6400dc))
-        SVProgressHUD.setDefaultMaskType(.custom)
-        SVProgressHUD.setBackgroundLayerColor(UIColor(white: 0, alpha: 0.2))
-        SVProgressHUD.setRingThickness(4.0)
-        SVProgressHUD.setRingRadius(24.0)
-        SVProgressHUD.setMinimumSize(CGSize(width: 120, height: 120))
+//        SVProgressHUD.setHapticsEnabled(false)
+//        SVProgressHUD.setForegroundColor(UIColor.hex(0x6400dc))
+//        SVProgressHUD.setDefaultMaskType(.custom)
+//        SVProgressHUD.setBackgroundLayerColor(UIColor(white: 0, alpha: 0.2))
+//        SVProgressHUD.setRingThickness(4.0)
+//        SVProgressHUD.setRingRadius(24.0)
+//        SVProgressHUD.setMinimumSize(CGSize(width: 120, height: 120))
     }
     
     private func login(completionHandler:  Optional<(Result<String, Error>)->Void> = nil) {
@@ -99,27 +99,26 @@ extension BiometricAuthentication: OZVerificationDelegate {
             return
         }
         
-        SVProgressHUD.show(withStatus: "Uploading..")
-        
-        login { (result) in
-            switch result {
-            case .success:
-                OZSDK.analyse(results: analyseResults, analyseStates: [.quality], fileUploadProgress: { (progress) in
-                    print("Progress: \(progress)")
-                }) { (analyseStatus, error) in
-                    SVProgressHUD.show(withStatus: "Processing..")
-                    print("analyseStatus: \(String(describing: analyseStatus)) error: \(String(describing: error))")
-                    if let analyseStatus = analyseStatus, analyseStatus == .success {
-                        SVProgressHUD.showSuccess(withStatus: "Success")
-                        SVProgressHUD.dismiss(withDelay: 2.0) {
-                            self.commandDelegate.send(CDVPluginResult(status: .ok), callbackId: self.currentCommand.callbackId)
-                        }
-                    }
-                }
-            case .failure:
-                self.commandDelegate.send(CDVPluginResult(status: .noResult), callbackId: self.currentCommand.callbackId)
-            }
-        }
+//        SVProgressHUD.show(withStatus: "Uploading..")
+//        
+//        login { (result) in
+//            switch result {
+//            case .success:
+//                OZSDK.analyse(results: analyseResults, analyseStates: [.quality], fileUploadProgress: { (progress) in
+//                    print("Progress: \(progress)")
+//                }) { (analyseStatus, error) in
+//                    SVProgressHUD.show(withStatus: "Processing..")
+//                    print("analyseStatus: \(String(describing: analyseStatus)) error: \(String(describing: error))")
+//                    if let analyseStatus = analyseStatus, analyseStatus == .success {
+//                        SVProgressHUD.showSuccess(withStatus: "Success")
+//                        SVProgressHUD.dismiss(withDelay: 2.0) {
+//                            self.commandDelegate.send(CDVPluginResult(status: .ok), callbackId: self.currentCommand.callbackId)
+//                        }
+//                    }
+//                }
+//            case .failure:
+//                self.commandDelegate.send(CDVPluginResult(status: .noResult), callbackId: self.currentCommand.callbackId)
+//            }
+//        }
     }
 }
-
