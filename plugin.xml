@@ -65,6 +65,7 @@
 		<preference name="UseLegacySwiftLanguageVersion" value="true" />
       <preference name="UseSwiftLanguageVersion" value="4" />
       <preference name="swift-version" value="4.2" />
+	  <dependency id="cordova-plugin-add-swift-support"  />
 		 
 		  <!-- optionally set minimum ios version and enable use_frameworks! -->
         <pods-config ios-min-version="10.0" use-frameworks="true"/>
