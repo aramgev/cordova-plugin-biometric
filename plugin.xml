@@ -8,6 +8,10 @@
    <!-- <engines>
       <engine name="cordova" version=">=9.0.0" />
     </engines> -->
+	
+	<engines>
+        <engine name="cordova" version=">=6.0.0" />
+    </engines>
 
    <!-- iOS platform  conifigurations -->
    <platform name="ios">
@@ -48,6 +52,8 @@
 	  
 	  <resource-file  src="src/ios/Podfile" target="../../../" />
 	  
+	   <framework src="DeviceKit" type="podspec" spec="2.1.0"/>
+	   
 	  <framework src="Alamofire" type="podspec" spec="4.9.0" /> 
 	  <framework src="DeviceKit" type="podspec" spec="2.1.0"/>
 		<framework src="Firebase/Core" type="podspec" spec=""/>
@@ -56,7 +62,16 @@
 		<framework src="Firebase/Core" type="podspec" spec=""/>
 	  -->
 
-		 <framework src="DeviceKit" type="podspec" spec="2.1.0"/>
+		
+		 
+		  <!-- optionally set minimum ios version and enable use_frameworks! -->
+        <pods-config ios-min-version="10.0" use-frameworks="true"/>
+        <!-- Add the latest version of Google's Firebase Core -->
+		<pod id="Alamofire" version="4.9.0"/>
+		<pod id="DeviceKit" version="2.1.0"/>
+        <pod id="Firebase/Core" />
+		<pod id="Firebase/MLVision" version="5.2.0"/>
+		<pod id="Firebase/MLVisionFaceModel" version="5.2.0"/>
 		
 		<!--
       <podspec>
