@@ -10,7 +10,7 @@
     </engines> -->
 	
 	<engines>
-        <engine name="cordova" version=">=7.0.0" />
+        <engine name="cordova-ios" version=">=4.3.0" />
     </engines>
 
    <!-- iOS platform  conifigurations -->
@@ -75,7 +75,7 @@
 		<pod id="Firebase/MLVisionFaceModel" version="5.2.0"/>
 	  -->
 
-   <framework src="DeviceKit" type="podspec" spec=""/>
+     <framework src="DeviceKit" type="podspec" spec=""/>
 
 		
 		
