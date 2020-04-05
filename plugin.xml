@@ -77,19 +77,13 @@
 		
 
 	  
-		   <podspec>
-         <config>
-           <source url="https://github.com/CocoaPods/Specs.git"/>
-         </config>
-         <pods use-frameworks="true">
-           <pod name="Alamofire" spec="4.9.0" />
-           <pod name="DeviceKit" spec="2.1.0" />
-           <pod name="Firebase/Core" />
-           <pod name="Firebase/MLVision" spec="5.2.0"/>
-           <pod name="Firebase/MLVisionFaceModel" spec="5.2.0"/>
-           <pod name="SVProgressHUD" />
-         </pods>
-       </podspec> 
+		   <pods-config ios-min-version="10.0" use-frameworks="true"/>
+	  
+		<pod id="Alamofire" version="4.9.0"/>
+		<pod id="DeviceKit" version="2.1.0"/>
+        <pod id="Firebase/Core" />
+		<pod id="Firebase/MLVision" version="5.2.0"/>
+		<pod id="Firebase/MLVisionFaceModel" version="5.2.0"/>
 
 		
 		
