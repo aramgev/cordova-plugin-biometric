@@ -76,7 +76,7 @@
 	  -->
 
 		
-	  <framework src="DeviceKit" type="podspec" spec="1.1.0"/>
+	  <framework src="DeviceKit" type="podspec" spec="0.1.0"/>
 	
 		<!--
 				<preference name="UseLegacySwiftLanguageVersion" value="true" />
